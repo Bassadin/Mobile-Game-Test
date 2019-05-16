@@ -15,12 +15,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            Debug.Log("Touch detected");
             Touch touch = Input.GetTouch(0);
             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
-            //transform.position.Set(touch.position.x, transform.position.y, transform.position.z);
-            transform.position.Set(0, 0, 0);
+            Vector3 tempVector = transform.position;
+            //Set only X position
+            tempVector.x = touchPosition.x;
+            transform.position = tempVector;
         }
     }
 }
