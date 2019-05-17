@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            Vector2 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);
+            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
             Vector3 tempVector = transform.position;
 
