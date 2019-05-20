@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed = 5.0f;
+
     float spritePixelWidth;
 
     void Start()
@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
-            Vector3 tempVector = transform.position;
-
             //Set only X position
-            tempVector.x = touchPosition.x;
+            float targetXCoordinate = touchPosition.x;
+            Vector2 tempVector = transform.position;
+            tempVector.x = targetXCoordinate;
             transform.position = tempVector;
         }
     }
