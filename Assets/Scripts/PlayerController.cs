@@ -3,7 +3,10 @@
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
+    public const float shootingSpeed = 0.5f;
+    public GameObject bulletPrefab;
 
+    float shootingTimer = 0;
     float spritePixelWidth;
     Rigidbody2D rigidbody2D;
 
@@ -15,6 +18,28 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        CheckShooting();
+        MovePlayer();
+    }
+
+    private void CheckShooting()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            shootingTimer += Time.deltaTime;
+        } else if (shootingTimer != 0) {
+            shootingTimer = 0;
+        }
+        if (shootingTimer >= shootingSpeed)
+        {
+            GameObject newBullet = Instantiate(bulletPrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
+            newBullet.GetComponent<Bullet>().Launch();
+            shootingTimer = 0;
+        }
+    }
+
+    private void MovePlayer()
     {
         Vector2 positionVector = transform.position;
         Vector2 moveVector = Vector2.zero;
@@ -28,12 +53,14 @@ public class PlayerController : MonoBehaviour
             if (targetXCoordinate > transform.position.x)
             {
                 moveVector = new Vector2(1, 0);
-            } else
+            }
+            else
             {
                 moveVector = new Vector2(-1, 0);
             }
 
-        } else
+        }
+        else
         {
             moveVector = new Vector2(Input.GetAxis("Horizontal"), 0);
         }
