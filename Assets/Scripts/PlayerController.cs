@@ -3,7 +3,7 @@
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public const float shootingSpeed = 0.5f;
+    public const float shootingSpeed = 0.2f;
     public GameObject bulletPrefab;
 
     float shootingTimer = 0;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckShooting()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
             shootingTimer += Time.deltaTime;
         } else if (shootingTimer != 0) {

@@ -14,4 +14,14 @@ public class Bullet : MonoBehaviour
     {
         rigidbody2D.AddForce(new Vector2(0, 1) * bulletSpeed);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision);
+        if (collision.gameObject.CompareTag("BulletCleanupWall"))
+        {
+            Debug.Log(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
