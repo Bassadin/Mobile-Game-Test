@@ -27,14 +27,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
+            if (shootingTimer <= float.Epsilon)
+            {
+                GameObject newBullet = Instantiate(bulletPrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
+                newBullet.GetComponent<Bullet>().Launch();
+                shootingTimer = 0;
+            }
             shootingTimer += Time.deltaTime;
         } else if (shootingTimer != 0) {
-            shootingTimer = 0;
-        }
-        if (shootingTimer >= shootingSpeed)
-        {
-            GameObject newBullet = Instantiate(bulletPrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
-            newBullet.GetComponent<Bullet>().Launch();
             shootingTimer = 0;
         }
     }
