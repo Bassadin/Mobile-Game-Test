@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision);
         if (collision.gameObject.CompareTag("BulletCleanupWall"))
         {
-            Debug.Log(collision.gameObject);
             Destroy(gameObject);
         }
     }
