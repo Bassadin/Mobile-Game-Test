@@ -353,6 +353,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletCleanupWall
       objectReference: {fileID: 0}
+    - target: {fileID: 2852402011854840388, guid: 99aad308754bfd6419111130957b664c,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 1755476276181406847, guid: 99aad308754bfd6419111130957b664c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -590,7 +596,7 @@ PrefabInstance:
     - target: {fileID: 7763216515565235313, guid: 95f28b42139a8a34a8ed3700ad737683,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.87
+      value: -2.78
       objectReference: {fileID: 0}
     - target: {fileID: 7763216515565235313, guid: 95f28b42139a8a34a8ed3700ad737683,
         type: 3}
