@@ -49,15 +49,7 @@ public class PlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             float targetXCoordinate = touchPosition.x;
-
-            if (targetXCoordinate > transform.position.x)
-            {
-                moveVector = new Vector2(1, 0);
-            }
-            else
-            {
-                moveVector = new Vector2(-1, 0);
-            }
+            moveVector = new Vector2(targetXCoordinate > transform.position.x ? 1 : -1, 0);
 
         }
         else
