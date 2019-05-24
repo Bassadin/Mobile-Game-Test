@@ -3,15 +3,16 @@
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public const float shootingSpeed = 0.2f;
+    public const float shootingSpeed = 0.35f;
     public GameObject bulletPrefab;
 
-    float shootingTimer = 0;
     float spritePixelWidth;
+    float shootingTimer;
     Rigidbody2D rigidbody2D;
 
     void Start()
     {
+        ResetShootingTimer();
         rigidbody2D = GetComponent<Rigidbody2D>();
         spritePixelWidth = GetComponent<SpriteRenderer>().bounds.size.x;
     }
@@ -19,11 +20,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckShooting();
+        Shooting();
         MovePlayer();
     }
 
-    private void CheckShooting()
+    private void Shooting()
     {
         if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
         {
@@ -31,12 +32,17 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject newBullet = Instantiate(bulletPrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
                 newBullet.GetComponent<Bullet>().Launch();
-                shootingTimer = 0;
+
+                shootingTimer = shootingSpeed;
             }
-            shootingTimer += Time.deltaTime;
-        } else if (shootingTimer != 0) {
-            shootingTimer = 0;
+            shootingTimer -= Time.deltaTime;
+        } else if (Input.GetKeyUp(KeyCode.Space)) {
+            ResetShootingTimer();
         }
+    }
+
+    private void ResetShootingTimer() {
+        shootingTimer = 0;
     }
 
     private void MovePlayer()
